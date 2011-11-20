@@ -1,0 +1,119 @@
+/* CSS Document 
+see pmob.co.uk/temp/3colfixedtest_4.htm
+*/
+* {margin:0;padding:0}
+p {margin-bottom:1em}
+ul{margin-left:20px;margin-bottom:1em}
+/* commented backslash hack v2 \*/ 
+html, body{height:100%;} 
+/* end hack */ 
+
+body {
+	background:#D2DA9C url(leftcolbg.jpg) repeat-y left top;
+	color: #FFF;
+}
+#outer{
+	margin-left:130px;
+	margin-right:130px;
+	background: #FFF;
+	border-left:1px solid #000;
+	border-right:1px solid #000;
+	margin-bottom:-52px;
+	min-height:100%
+}
+#header{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:70px;
+	background: #809900;
+	border-top:1px solid #000;
+	border-bottom:1px solid #000;
+	overflow:hidden;
+	z-index:999;
+}
+#left {
+	position:relative;/*ie needs this to show float */
+	width:130px;
+	float:left;
+	margin-left:-129px;/*must be 1px less than width otherwise won't push footer down */
+	z-index:100;
+	left:-1px;
+}
+#left p, 
+#right p {padding:3px}
+#right {
+	position:relative;/*ie needs this to show float */
+	width:130px;
+	float:right;
+	margin-right:-129px;/*must be 1px less than width otherwise won't push footer down */
+	left:1px;
+	color: #000;
+}
+#footer {
+	width:100%;
+	clear:both;
+	height:50px;
+	border-top:1px solid #000;
+	border-bottom:1px solid #000;
+	background-color: #406700;
+	text-align:center;
+	position:relative;
+}
+#clearheader{height:72px;}/*needed to make room for header*/
+#clearfooter{clear:both;height:52px;}/*needed to make room for footer*/
+* > html #clearfooter {float:left;width:100%;}/* ie mac styles */
+#centrecontent {
+	width:100%;
+	float:left;
+	position:relative;
+	z-index:1;
+	margin:0 -1px;/* old moz fix*/
+	color: #000;
+}
+/* css stuff below is just for presentation and not needed for the demo */
+#centrecontent p { padding: 0 20px; }
+h1 {font-family: Verdana, Arial, Helvetica, sans-serif; font-weight: lighter; font-size: 150%; padding: 20px; padding-left:10px;}
+#left span {
+	display:none;	
+}	
+#left a:hover {
+	text-decoration: none;
+	text-decoration: none;
+	color:#222;
+	background: #FFF;
+}
+#left a:hover span {
+	display:block;
+	position:absolute;
+	left:130px;
+	width:150px;
+	z-index:20;
+	background:#fff;
+}
+@media all and (min-width: 0px){
+  #left a:hover span {
+	top:150px;
+  }
+}
+#footer a, #left a { color:#FFF; }
+#footer span {
+	display:none;	
+}	
+#footer a:hover {
+	text-decoration: none;
+	color:#222;
+	background: #FFF;
+}
+#footer a:hover span {
+	display:block;
+	position:absolute;
+	top:-95px;
+	width:150px;
+	z-index:20;
+	background:#fff;
+	left:50%;
+}
+html>body #minHeight{float:right;width:0px;height:100%;margin-bottom:-52px;} /*safari wrapper */
+
