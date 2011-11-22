@@ -1,24 +1,24 @@
 package model;
 
 /**
- * This class represents an item that has been ordered.
+ * This class represents an item in the users shopping cart
  * 
  * @author Austin
  */
-public class OrderedItem {
+public class ShoppingCartItem{
     
-    private int orderID;
+    private int userID;
     private int itemID;
     private int quantity;
     
-    protected OrderedItem (int orderID, int itemID, int quantity) {
-        this.orderID = orderID;
+    protected ShoppingCartItem (int userID, int itemID, int quantity) {
+        this.userID = userID;
         this.itemID = itemID;
         this.quantity = quantity;
     }
     
     protected int getOrderID() {
-        int id = this.orderID;
+        int id = this.userID;
         return id;
     }
     

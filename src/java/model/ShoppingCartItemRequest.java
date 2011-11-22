@@ -4,22 +4,23 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import model.OrderedItem;
+import model.ShoppingCartItem;
 
 /**
- * This class handles requests for OrderedItem information
+ * This class handles requests for ShoppingCartItemInformation
  * 
  * @author Austin
  */
-public class OrderedItemRequest {
-     
-   /*
+public class ShoppingCartItemRequest {
+    
+    /*
    * Returns an ArrayList, the first element of which is an Integer containing
-   * the count of unique OrderedItems (not including quantity) in the list. 
-   * The remaining ArrayList elements are OrderedItem objects.
+   * the count of unique ShoppingCartItems (not including quantity) in the list.
+   * The remaining ArrayList elements are ShoppingCartItem objects.
    */
-    public ArrayList<Object> getOrderedItems(int orderID) {
-        String query = "SELECT * FROM Ordered_Item WHERE order_ID = " + orderID;
+    public ArrayList<Object> getShoppingCartItems(int userID) {
+        String query = "SELECT * FROM Shopping_Cart_Item WHERE user_ID = " 
+                + userID;
         ArrayList<Object> items = new ArrayList<Object>();
         
         try {
@@ -31,14 +32,14 @@ public class OrderedItemRequest {
             items.add(new Integer(numCols));
             
             while (rs.next()) {               
-                OrderedItem oi = new OrderedItem(rs.getInt(1), 
+                ShoppingCartItem sci = new ShoppingCartItem(rs.getInt(1), 
                         rs.getInt(2), rs.getInt(3));
-                items.add(oi);
+                items.add(sci);
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
         
         return items;
-    }    
+    }
 }
