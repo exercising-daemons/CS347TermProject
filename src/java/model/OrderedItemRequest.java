@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import model.OrderedItem;
 
 /**
  * Handles requests for OrderedItem information
@@ -14,15 +15,12 @@ public class OrderedItemRequest {
      
    /*
    * Returns an ArrayList, the first element of which is an Integer containing the
-   * count of columns in the list. The remaining ArrayList elements are item
-   * objects.
+   * count of unique OrderedItems (not including quantity) in the list. The remaining 
+   * ArrayList elements are OrderedItem objects.
    */
-    public ArrayList<Object> getOrderedItems() {
-        String query = "Select * from OrderedItem";
+    public ArrayList<Object> getOrderedItems(int orderID) {
+        String query = "SELECT * FROM Ordered_Item WHERE order_ID = " + orderID;
         ArrayList<Object> items = new ArrayList<Object>();
-        int orderID;
-        int itemID;
-        int quantity;
         
         try {
             DBQueryHandler dbqh = new DBQueryHandler();
@@ -32,15 +30,15 @@ public class OrderedItemRequest {
             int numCols = rsmd.getColumnCount();
             items.add(new Integer(numCols));
             
-            while (rs.next()) {
-                // create an OrderedItem from a tuple
-                // add OrderedItem to ArrayList
-                // repeat
+            while (rs.next()) {               
+                OrderedItem oi = new OrderedItem(rs.getInt(1), 
+                        rs.getInt(2), rs.getInt(3));
+                items.add(oi);
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
         
         return items;
-    }
+    }    
 }
