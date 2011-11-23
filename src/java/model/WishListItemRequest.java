@@ -4,22 +4,21 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import model.ShoppingCartItem;
+import model.WishListItem;
 
 /**
- * This class handles requests for ShoppingCartItemInformation
- * 
+ *
  * @author Austin
  */
-public class ShoppingCartItemRequest {
+public class WishListItemRequest {
     
-  /*
+    /*
    * Returns an ArrayList, the first element of which is an Integer containing
-   * the count of unique ShoppingCartItems (not including quantity) in the list.
-   * The remaining ArrayList elements are ShoppingCartItem objects.
+   * the count of unique WishListItems (not including quantity) in the list.
+   * The remaining ArrayList elements are WishListItem objects.
    */
-    public ArrayList<Object> getShoppingCartItems(int userID) {
-        String query = "SELECT * FROM Shopping_Cart_Item WHERE user_ID = " 
+    public ArrayList<Object> getWishListItems(int userID) {
+        String query = "SELECT * FROM Wish_List_Item WHERE user_ID = " 
                 + userID;
         ArrayList<Object> items = new ArrayList<Object>();
         
@@ -32,9 +31,9 @@ public class ShoppingCartItemRequest {
             items.add(new Integer(numCols));
             
             while (rs.next()) {               
-                ShoppingCartItem sci = new ShoppingCartItem(rs.getInt(1), 
+                WishListItem wli = new WishListItem(rs.getInt(1), 
                         rs.getInt(2), rs.getInt(3));
-                items.add(sci);
+                items.add(wli);
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();

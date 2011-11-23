@@ -1,17 +1,18 @@
+
 package model;
 
 /**
- * This class represents an item in the users shopping cart
+ * This class represents an item in a users wishlist
  * 
  * @author Austin
  */
-public class ShoppingCartItem{
+public class WishListItem {
     
     private int userID;
     private int itemID;
     private int quantity;
     
-    protected ShoppingCartItem (int userID, int itemID, int quantity) {
+    protected WishListItem (int userID, int itemID, int quantity) {
         this.userID = userID;
         this.itemID = itemID;
         this.quantity = quantity;
