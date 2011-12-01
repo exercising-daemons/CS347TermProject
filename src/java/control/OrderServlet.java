@@ -33,7 +33,7 @@ public class OrderServlet extends HttpServlet {
    */
   public void doPost(HttpServletRequest request, HttpServletResponse response)
           throws IOException, ServletException {
-    if (request.getParameter("placeOrder") != null) {
+    if (request.getParameter("order") != null) {
       handlePlaceOrder(request, response);
       forwardRequest(request, response, "/checkout.jsp");
     }    
@@ -43,6 +43,14 @@ public class OrderServlet extends HttpServlet {
     }  
      
   }
+  
+  /**
+   * handles placing an order
+   * @param request
+   * @param response
+   * @throws IOException
+   * @throws ServletException 
+   */
   private void handlePlaceOrder(HttpServletRequest request,
           HttpServletResponse response) throws IOException, ServletException {
     
@@ -54,7 +62,7 @@ public class OrderServlet extends HttpServlet {
     //get users id
     String id = (String)session.getAttribute("userID");
     String status = "processing";
-    //change this--->
+    
     //get the current date and time:
     String time = "";
     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -64,7 +72,7 @@ public class OrderServlet extends HttpServlet {
  
 
     OrderUpdate ou = new OrderUpdate();
-    boolean orderAdded = ou.addOrder(status, id, time);
+    boolean orderAdded = ou.addOrder(0, status, id, time);
     
     if(orderAdded)
            session.setAttribute("orderMessage", "Order has been placed successfully");
@@ -73,6 +81,13 @@ public class OrderServlet extends HttpServlet {
    
   }
   
+  /**
+   * handles the administrator function of changing the status of an order
+   * @param request
+   * @param response
+   * @throws IOException
+   * @throws ServletException 
+   */
   private void handleChangeOrderStatus(HttpServletRequest request,
           HttpServletResponse response) throws IOException, ServletException {
       

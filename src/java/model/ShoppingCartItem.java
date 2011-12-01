@@ -11,23 +11,23 @@ public class ShoppingCartItem{
     private int itemID;
     private int quantity;
     
-    protected ShoppingCartItem (int userID, int itemID, int quantity) {
+    public ShoppingCartItem (int userID, int itemID, int quantity) {
         this.userID = userID;
         this.itemID = itemID;
         this.quantity = quantity;
     }
     
-    protected int getUserID() {
+    public int getUserID() {
         int id = this.userID;
         return id;
     }
     
-    protected int getItemID() {
+    public int getItemID() {
         int id = this.itemID;
         return id;
     }
     
-    protected int getQuantity() {
+    public int getQuantity() {
         int quant = this.quantity;
         return quant;
     }

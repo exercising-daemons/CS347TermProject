@@ -11,23 +11,23 @@ public class OrderedItem {
     private int itemID;
     private int quantity;
     
-    protected OrderedItem (int orderID, int itemID, int quantity) {
+    public OrderedItem (int orderID, int itemID, int quantity) {
         this.orderID = orderID;
         this.itemID = itemID;
         this.quantity = quantity;
     }
     
-    protected int getOrderID() {
+    public int getOrderID() {
         int id = this.orderID;
         return id;
     }
     
-    protected int getItemID() {
+    public int getItemID() {
         int id = this.itemID;
         return id;
     }
     
-    protected int getQuantity() {
+    public int getQuantity() {
         int quant = this.quantity;
         return quant;
     }

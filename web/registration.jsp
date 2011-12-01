@@ -24,8 +24,8 @@
             <ul>
                 <li><a href="index.jsp">Home</a></li>
                 <li><a href="#">My Account</a></li>
-                <li><a href="#">Shopping Cart</a></li>
-                <li><a href="#">Wish List</a></li>
+                <li><a href="shoppingcart.jsp">Shopping Cart</a></li>
+                <li><a href="wishlist.jsp">Wish List</a></li>
             </ul>
 
           </div>

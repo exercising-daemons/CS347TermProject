@@ -2,22 +2,22 @@ package model;
 
 import java.util.*;
 import java.sql.*;
-import model.Item;
+//import common.Order;
 
 /*
- * Handle requests for item information
+ * Handle requests for order information
  * @author - Eric Walters
  * @acknowledgements - Ralph Grove for code to base class off of
  */
-public class ItemRequest {
+public class OrderRequest {
   
   /*
    * Returns a ArrayList, the first element of which is an Integer containing the
    * count of columns in the table. The remaining ArrayList elements are item
    * objects.
    */
-  public ArrayList<Object> getItemTable() {
-    String query = "select * from Item";
+  public ArrayList<Object> getOrderTable() {
+    String query = "select * from Order";
     ArrayList<Object> result = new ArrayList<Object>();
 
     // open a connection to the database and a Statement object
@@ -31,15 +31,13 @@ public class ItemRequest {
 
       while (rs.next()) {
         int i = 1; // 1st column
-	int id = rs.getInt(i++);
-        String name = rs.getString(i++);
-        String description = rs.getString(i++);
-        double price = rs.getDouble(i++);
-        String category = rs.getString(i++);
-        int stock = rs.getInt(i++);
-        Item item = new Item(id, name, description, price, 
-		category, stock);
-        result.add(item);
+		int order_ID = rs.getInt(i++);
+        String status = rs.getString(i++);
+		int user_ID = rs.getInt(i++);
+		//Date date = rs.getObject(i++);
+                String date  = rs.getString(i++);
+        Order order = new Order(order_ID, status, user_ID, date);
+        result.add(order);
       }
       
       dbQueHand.close();

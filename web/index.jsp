@@ -24,12 +24,30 @@
             <h1>Navigation</h1>
             <ul>
                 <li><a href="#">My Account</a></li>
-                <li><a href="#">Shopping Cart</a></li>
-                <li><a href="#">Wish List</a></li>
+                <li><a href="shoppingcart.jsp">Shopping Cart</a></li>
+                <li><a href="wishlist.jsp">Wish List</a></li>
             </ul>
 
           </div>
           <div id="right">
+            <p>
+                <%
+                
+                if (session.getAttribute("loggedin")!=null) {
+                    out.print(session.getAttribute("userEmail") + "<br />");
+                    out.print(session.getAttribute("userID") + "<br />");
+                }
+                else{
+                %>
+                   <jsp:include page="/login.jsp"/>
+
+                
+               <%
+               }
+               %>
+                
+            </p
+            
             <p>
             <ul>
                 <li><a href="registration.jsp">Register!</a></li>

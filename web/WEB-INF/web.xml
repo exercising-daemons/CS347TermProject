@@ -29,7 +29,24 @@
     <servlet-name>OrderServlet</servlet-name>
     <url-pattern>/Order</url-pattern>
   </servlet-mapping>  
+  
+  <servlet>
+    <servlet-name>ShoppingCartServlet</servlet-name>
+    <servlet-class>control.ShoppingCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShoppingCartServlet</servlet-name>
+    <url-pattern>/ShoppingCart</url-pattern>
+  </servlet-mapping>
     
+  <servlet>
+    <servlet-name>WishListServlet</servlet-name>
+    <servlet-class>control.WishListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WishListServlet</servlet-name>
+    <url-pattern>/WishList</url-pattern>
+  </servlet-mapping>
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

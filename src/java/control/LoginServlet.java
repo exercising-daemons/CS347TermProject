@@ -39,8 +39,20 @@ public class LoginServlet extends HttpServlet {
       handleRetrievePassword(request, response);
       forwardRequest(request, response, "/forgotPassword.jsp");
     }
+    else if(request.getParameter("logout") != null) {
+      handleLogout(request, response);
+      forwardRequest(request, response, "/index.jsp");
+    }
      
   }
+  
+  /**
+   * handles the creation of a new user account
+   * @param request
+   * @param response
+   * @throws IOException
+   * @throws ServletException 
+   */
     private void handleCreateAccount(HttpServletRequest request,
           HttpServletResponse response) throws IOException, ServletException {
     
@@ -56,7 +68,7 @@ public class LoginServlet extends HttpServlet {
     String email = request.getParameter("email");
     String password1 = request.getParameter("pw1");
     String password2 = request.getParameter("pw2");
-    //String phone = request.getParameter("phone");
+
     int phone = 0;
     try{
         phone = Integer.parseInt(request.getParameter("phone"));
@@ -73,12 +85,19 @@ public class LoginServlet extends HttpServlet {
     boolean addResult = uu.addUser(Fname, Mname, Lname, address,
             email, phone, admin, password1);
     addMessage= addResult ? "Account Created" : "Account Creation Failed";
-
-    //now login and go to index.jsp?
+    
+    //automatically log user in?....
     
     session.setAttribute("addMessage", addMessage);
   }
     
+    /**
+     * handle login request
+     * @param request
+     * @param response
+     * @throws IOException
+     * @throws ServletException 
+     */
     private void handleLogin(HttpServletRequest request,
           HttpServletResponse response) throws IOException, ServletException {
     
@@ -91,17 +110,43 @@ public class LoginServlet extends HttpServlet {
     boolean result = ur.login(email, password);
     
     if(result){
-        session.setAttribute("loggedin", new Boolean(true));
+        session.setAttribute("loggedin", true);
         session.setAttribute("userEmail", email);
         session.setAttribute("userID", ur.getUserID(email));
     }    
     else{
-        session.setAttribute("loggedin", new Boolean(false));
+        session.setAttribute("loggedin", false);
         //some sort of message?
     }
         
     }
     
+    /**
+     * handle log out request
+     * @param request
+     * @param response
+     * @throws IOException
+     * @throws ServletException 
+     */
+    private void handleLogout(HttpServletRequest request,
+          HttpServletResponse response) throws IOException, ServletException {
+    
+    HttpSession session = request.getSession(true);
+
+        session.setAttribute("loggedin", null);
+        session.setAttribute("userEmail", null);
+        session.setAttribute("userID", null);
+
+        
+    }
+    
+    /**
+     * handle retrieving a user's password
+     * @param request
+     * @param response
+     * @throws IOException
+     * @throws ServletException 
+     */
    private void handleRetrievePassword(HttpServletRequest request,
           HttpServletResponse response) throws IOException, ServletException{
        

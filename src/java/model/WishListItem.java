@@ -12,23 +12,23 @@ public class WishListItem {
     private int itemID;
     private int quantity;
     
-    protected WishListItem (int userID, int itemID, int quantity) {
+    public WishListItem (int userID, int itemID, int quantity) {
         this.userID = userID;
         this.itemID = itemID;
         this.quantity = quantity;
     }
     
-    protected int getUserID() {
+    public int getUserID() {
         int id = this.userID;
         return id;
     }
     
-    protected int getItemID() {
+    public int getItemID() {
         int id = this.itemID;
         return id;
     }
     
-    protected int getQuantity() {
+    public int getQuantity() {
         int quant = this.quantity;
         return quant;
     }

@@ -42,12 +42,19 @@ public class ItemServlet extends HttpServlet{
      
   }
   
+  /**
+   * handle the administrator function of adding an item to the inventory
+   * @param request
+   * @param response
+   * @throws IOException
+   * @throws ServletException 
+   */
    private void handleAddItem(HttpServletRequest request,
         HttpServletResponse response) throws IOException, ServletException {
     
     HttpSession session = request.getSession(true);
     
-  
+    //get item details
     String name = request.getParameter("name");
     String description = request.getParameter("description");
     double price = Double.parseDouble(request.getParameter("price"));
@@ -63,6 +70,13 @@ public class ItemServlet extends HttpServlet{
         session.setAttribute("addMessage", "item not added");
    }
    
+   /**
+    * handle the administrator function of deleting an item from the inventory
+    * @param request
+    * @param response
+    * @throws IOException
+    * @throws ServletException 
+    */
    private void handleDeleteItem(HttpServletRequest request,
         HttpServletResponse response) throws IOException, ServletException{
     

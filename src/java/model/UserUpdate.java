@@ -1,17 +1,20 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import java.sql.*;
-import model.User;
-/**
- *
- * @author smith8ar
+import model.Item;
+
+
+/*
+ * Handle user update and deletion requests.
+ * @author - Eric Walters
+ * @acknowledgements - Ralph Grove for source code to base off of
  */
 public class UserUpdate {
-    public boolean addUser(String Fname, String Mname, String Lname, String address,
+
+  /*
+   * Update a user record.
+   */
+  public boolean addUser(String Fname, String Mname, String Lname, String address,
             String email, int phone, int admin, String password){
         //return true;
     DBCommandHandler dbComHand = new DBCommandHandler();
@@ -40,4 +43,21 @@ public class UserUpdate {
       return false;
     }
     }
-}
+
+  /*
+   * Delete a user record.
+   */
+  public boolean deleteUser(int id) {
+    DBCommandHandler dbComHand = new DBCommandHandler();
+    try {
+      String command = "delete from User where user_ID = '" + id + "'";
+      int result = dbComHand.doCommand(command);
+      dbComHand.close();
+      return (result > 0);
+    } catch (SQLException ex) {
+      System.out.println(ex.getMessage());
+      return false;
+    }
+  }
+  
+} // end class
